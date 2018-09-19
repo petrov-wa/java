@@ -1,11 +1,11 @@
-package Lessons.Kavalevsky.M_10_X0.Model;
+package M_10_X0.Model;
 
 import java.awt.Point;
 
 import javax.activity.InvalidActivityException;
 
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.AlreadyOccupiedException;
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.InvalidPointException;
+import M_10_X0.Model.Exceptions.AlreadyOccupiedException;
+import M_10_X0.Model.Exceptions.InvalidPointException;
 
 public class CField {
 //	private static final int MAX_COORDINATE=FIELD_SIZE; 

@@ -1,6 +1,6 @@
-package Lessons.Kavalevsky.M_10_X0.View;
+package M_10_X0.View;
 
-import Lessons.Kavalevsky.M_10_X0.Model.CGame;
+import M_10_X0.Model.CGame;
 
 public class Cx0View {
 

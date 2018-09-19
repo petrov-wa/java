@@ -1,7 +1,7 @@
-package Lessons.Kavalevsky.M_10_X0.Controller;
+package M_10_X0.Controller;
 
-import Lessons.Kavalevsky.M_10_X0.Model.CField;
-import Lessons.Kavalevsky.M_10_X0.Model.EFigure;
+import M_10_X0.Model.CField;
+import M_10_X0.Model.EFigure;
 
 public class CCurrentMoveController {
 

@@ -1,13 +1,13 @@
-package Lessons.Kavalevsky.M_10_X0.Controller;
+package M_10_X0.Controller;
 
 import java.awt.Point;
 
-import Lessons.Kavalevsky.M_10_X0.Model.EFigure;
-import Lessons.Kavalevsky.M_10_X0.Model.CField;
-import Lessons.Kavalevsky.M_10_X0.Model.CPlayer;
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.InvalidMoveException;
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.InvalidPointException;
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.AlreadyOccupiedException;;
+import M_10_X0.Model.EFigure;
+import M_10_X0.Model.CField;
+import M_10_X0.Model.CPlayer;
+import M_10_X0.Model.Exceptions.InvalidMoveException;
+import M_10_X0.Model.Exceptions.InvalidPointException;
+import M_10_X0.Model.Exceptions.AlreadyOccupiedException;;
 
 
 public class CMoveController {
