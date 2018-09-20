@@ -1,4 +1,4 @@
-package Lessons.Kavalevsky.M_10_X0.Model;
+package M_10_X0.Model;
 
 import static org.junit.Assert.*;
 

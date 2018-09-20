@@ -1,10 +1,10 @@
-package Lessons.Kavalevsky.M_10_X0.Model;
+package M_10_X0.Model;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.AlreadyOccupiedException;
-import Lessons.Kavalevsky.M_10_X0.Model.Exceptions.InvalidPointException;
+import M_10_X0.Model.Exceptions.AlreadyOccupiedException;
+import M_10_X0.Model.Exceptions.InvalidPointException;
 
 import java.awt.Point;
 
