@@ -47,21 +47,30 @@ public class CWinnerController {
 		return false; 
 	}
 */
-	private boolean check(final CField gameBoard, final Point startPoint, final IPointChanger pointChanger) {
-		Point p2 = pointChanger.next(startPoint);
-		Point p3 = pointChanger.next(p2);
+	private boolean check(final CField gameBoard, final Point currentPoint, final IPointChanger pointGenerator) {
 
+		final EFigure currentFigure; 
+		final EFigure nextFigure; 
+		final Point nextPoint = pointGenerator.next(currentPoint);
 		try {
-			if( gameBoard.getFigure(startPoint) == gameBoard.getFigure(p2) && 
-				gameBoard.getFigure(startPoint) == gameBoard.getFigure(p3) && 
-				gameBoard.getFigure(startPoint) != null) {
-					return true ;
-			}
-		} catch(InvalidPointException e) {
-			e.printStackTrace();
+			// пробуем получить фигуру из текущего поля и следующего 
+			currentFigure = gameBoard.getFigure(currentPoint); 
+			nextFigure    = gameBoard.getFigure(nextPoint); 
+		} catch (final InvalidPointException e) {
+			// если возникло исключение "неверное поле", значит нет пары фигур для сравнения на текущем
+			// шаге, но раз мы дошли до этого шага, значит до этого шага фигуры совпадали, значит 
+			// действительно кто-то победил
+			return true; 
 		}
+		
+		if(currentFigure == null) { return false; } // текущее поле не заполнено -- 
+													// значит в этом направлении победителей нет
 
-		return false; 
+		if(currentFigure != nextFigure) {return false; } // в текущем полу не такая фигурка как 
+														 // в следующем -- нет победитедя в данном 
+														 // направлении
+		
+		return this.check(gameBoard, nextPoint, pointGenerator); 
 	}
 
 	
