@@ -15,22 +15,28 @@ public class CWinnerController {
 
 	public EFigure getWinner(final CField gameBoard) throws NoWinnerException {
 
-		for(int i=0; i < gameBoard.getSize(); i++) {
-			if(this.check(gameBoard, new Point(i,0), 
-						new IPointChanger() {
-							@Override 
-							public Point next(Point p) {
-								return new Point(p.x, p.y+1); 
-							}
-						}
-					)) {
-				try {
-					return gameBoard.getFigure(new Point(i,0));
-				} catch(InvalidPointException e) {
-					
+		try {
+			for(int i=0; i<gameBoard.getSize(); i++) {
+				if(check(gameBoard, new Point(i, 0), p->new Point(p.x, p.y+1))){
+					return gameBoard.getFigure(new Point(i, 0)); 
+				}
+			}	
+			for(int i=0; i<gameBoard.getSize(); i++) {
+				if(check(gameBoard, new Point(i, 0), p->new Point(p.x+1, p.y))){
+					return gameBoard.getFigure(new Point(i, 0)); 
 				}
 			}
+			
+			if(check(gameBoard, new Point(0, 0), p->new Point(p.x + 1, p.y + 1))) {
+				return gameBoard.getFigure(new Point(0,0)); 
+			}
+			if(check(gameBoard, new Point(0, gameBoard.getSize()-1), p->new Point(p.x + 1, p.y - 1))) {
+				return gameBoard.getFigure(new Point(0, gameBoard.getSize()-1)); 
+			}
+		} catch(InvalidPointException e){
+			e.printStackTrace(); 
 		}
+		
 		return null;
 	}
 /*	
