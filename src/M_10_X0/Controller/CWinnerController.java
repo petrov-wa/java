@@ -13,7 +13,7 @@ public class CWinnerController {
 		// TODO Auto-generated constructor stub
 	}
 
-	EFigure getWinner(final CField gameBoard) throws NoWinnerException {
+	public EFigure getWinner(final CField gameBoard) throws NoWinnerException {
 
 		for(int i=0; i < gameBoard.getSize(); i++) {
 			if(this.check(gameBoard, new Point(i,0), 
