@@ -22,8 +22,8 @@ public class CWinnerController {
 				}
 			}	
 			for(int i=0; i<gameBoard.getSize(); i++) {
-				if(check(gameBoard, new Point(i, 0), p->new Point(p.x+1, p.y))){
-					return gameBoard.getFigure(new Point(i, 0)); 
+				if(check(gameBoard, new Point(0, i), p->new Point(p.x+1, p.y))){
+					return gameBoard.getFigure(new Point(0, i)); 
 				}
 			}
 			
