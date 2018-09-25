@@ -60,4 +60,19 @@ public class CWinnerControllerTest {
 		}
 	}
 
+	@Test
+	public void testGetWinnerWhenNOWinnerColumn() throws Exception {
+		final CWinnerController winnerController = new CWinnerController(); 
+		final int boardSize = 3;
+		
+		for(int i = 0; i<boardSize; i++) {
+			final CField gameBoard = new CField(boardSize);
+
+			for(int j=0; j<boardSize-1; j++) {
+				gameBoard.setFigure(new Point(j,i), EFigure.X);
+			}
+//			gameBoard.setFigure(new Point(boardSize-1,i), EFigure.O);
+			assertNull(winnerController.getWinner(gameBoard)); 
+		}
+	}
 }

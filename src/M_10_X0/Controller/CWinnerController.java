@@ -61,6 +61,8 @@ public class CWinnerController {
 		try {
 			// пробуем получить фигуру из текущего поля и следующего 
 			currentFigure = gameBoard.getFigure(currentPoint); 
+//			if(currentFigure == null) { return false; } // текущее поле не заполнено -- 
+														// значит в этом направлении победителей нет
 			nextFigure    = gameBoard.getFigure(nextPoint); 
 		} catch (final InvalidPointException e) {
 			// если возникло исключение "неверное поле", значит нет пары фигур для сравнения на текущем
@@ -70,8 +72,7 @@ public class CWinnerController {
 		}
 		
 		if(currentFigure == null) { return false; } // текущее поле не заполнено -- 
-													// значит в этом направлении победителей нет
-
+		// значит в этом направлении победителей нет
 		if(currentFigure != nextFigure) {return false; } // в текущем полу не такая фигурка как 
 														 // в следующем -- нет победитедя в данном 
 														 // направлении
