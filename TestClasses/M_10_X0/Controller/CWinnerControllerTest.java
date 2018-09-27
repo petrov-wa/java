@@ -31,7 +31,7 @@ public class CWinnerControllerTest {
 	public void testGetWinnerWhenNOWinnerRow() throws Exception {
 		final CWinnerController winnerController = new CWinnerController(); 
 		final int boardSize = 3;
-		
+		//  noise figure in last element of row
 		for(int i = 0; i<boardSize; i++) {
 			final CField gameBoard = new CField(boardSize);
 
@@ -41,9 +41,17 @@ public class CWinnerControllerTest {
 			gameBoard.setFigure(new Point(i,boardSize-1), EFigure.O);
 			assertNull(winnerController.getWinner(gameBoard)); 
 		}
-	}
-	
+		//  noise figure in last element of row
+		for(int i = 0; i<boardSize; i++) {
+			final CField gameBoard = new CField(boardSize);
 
+			for(int j=1; j<boardSize; j++) {
+				gameBoard.setFigure(new Point(i,j), EFigure.X);
+			}
+			gameBoard.setFigure(new Point(i,0), EFigure.O);
+			assertNull(winnerController.getWinner(gameBoard)); 
+		}
+	}
 
 	@Test
 	public void testGetWinnerWhenWinnerColumn() throws Exception {
@@ -64,14 +72,26 @@ public class CWinnerControllerTest {
 	public void testGetWinnerWhenNOWinnerColumn() throws Exception {
 		final CWinnerController winnerController = new CWinnerController(); 
 		final int boardSize = 3;
-		
+
+		//  noise figure in last element of column
 		for(int i = 0; i<boardSize; i++) {
 			final CField gameBoard = new CField(boardSize);
 
 			for(int j=0; j<boardSize-1; j++) {
 				gameBoard.setFigure(new Point(j,i), EFigure.X);
 			}
-//			gameBoard.setFigure(new Point(boardSize-1,i), EFigure.O);
+			gameBoard.setFigure(new Point(boardSize-1,i), EFigure.O);
+			assertNull(winnerController.getWinner(gameBoard)); 
+		}
+		
+		//  noise figure in first element of column 
+		for(int i = 0; i<boardSize; i++) {
+			final CField gameBoard = new CField(boardSize);
+
+			for(int j=1; j<boardSize; j++) {
+				gameBoard.setFigure(new Point(j,i), EFigure.X);
+			}
+			gameBoard.setFigure(new Point(0,i), EFigure.O);
 			assertNull(winnerController.getWinner(gameBoard)); 
 		}
 	}
