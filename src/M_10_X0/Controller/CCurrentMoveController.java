@@ -18,11 +18,13 @@ public class CCurrentMoveController {
 		
 		for(int i=0; i<gameBoard.getSize(); i++){
 			for(int j=0; j<gameBoard.getSize(); j++) {
-				if(gameBoard.getFigure(new Point(i, j)) == EFigure.X) { cntX++; }
-				else if(gameBoard.getFigure(new Point(i,j)) == EFigure.O) { cnt0++; }
+				switch(gameBoard.getFigure(new Point(i,j))) {
+					case X: cntX++; break;  
+					case O: cnt0++; break; 
+				}
 			}
 		}	
-		
+		if((cnt0+cntX) == gameBoard.getSize()*gameBoard.getSize()) { return null; }
 		if(cnt0 < cntX) { return EFigure.O; }
 		else { return EFigure.X; }
 	}
