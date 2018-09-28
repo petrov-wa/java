@@ -13,19 +13,23 @@ public class CCurrentMoveController {
 	}
 
 	EFigure currentMove(CField gameBoard) throws InvalidPointException {
-		int cntX = 0;
+/*		int cntX = 0;
 		int cnt0 = 0;
+*/
+		int cnt = 0;  
 		
 		for(int i=0; i<gameBoard.getSize(); i++){
 			for(int j=0; j<gameBoard.getSize(); j++) {
-				switch(gameBoard.getFigure(new Point(i,j))) {
+/*				switch(gameBoard.getFigure(new Point(i,j))) {
 					case X: cntX++; break;  
 					case O: cnt0++; break; 
 				}
+*/
+				if(gameBoard.getFigure(new Point(i,j)) != null) { cnt++; }
 			}
 		}	
-		if((cnt0+cntX) == gameBoard.getSize()*gameBoard.getSize()) { return null; }
-		if(cnt0 < cntX) { return EFigure.O; }
+		if(cnt == gameBoard.getSize()*gameBoard.getSize()) { return null; }
+		if(cnt % 2 == 1) { return EFigure.O; }
 		else { return EFigure.X; }
 	}
 }
