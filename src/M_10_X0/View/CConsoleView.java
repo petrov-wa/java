@@ -29,7 +29,7 @@ public class CConsoleView {
 
 	private void printLine(final CField gameBoard, final int row){
 		System.out.print("|");
-		for(int column=0; row<gameBoard.getSize(); column++) {
+		for(int column=0; column<gameBoard.getSize(); column++) {
 			final EFigure figure ;
 			try {
 				figure = gameBoard.getFigure(new Point(row, column));
@@ -43,8 +43,8 @@ public class CConsoleView {
 	}
 	
 	private void printSepartor(final CField gameBoard) {
-	    for(int i=0; i<gameBoard.getSize()+1; i++) {
-		System.out.print("--");
+	    for(int i=0; i<gameBoard.getSize()+2; i++) {
+		System.out.print("-");
 	    }
 	    System.out.println();
 	}
