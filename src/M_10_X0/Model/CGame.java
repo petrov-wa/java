@@ -7,23 +7,21 @@ public class CGame {
 	private final String name; 
 	
 	public CGame(final CPlayer[] newPlayers, final CField newField, final String newName) {
-		// TODO Auto-generated constructor stub
-		
 		this.players = newPlayers; 
 		this.field = newField; 
 		this.name = newName; 
 	}
 
 	
-	CPlayer[] getPlayers() {
+	public CPlayer[] getPlayers() {
 		return this.players; 
 	}
 	
-	CField getField() {
+	public CField getField() {
 		return this.field; 
 	}
 	
-	String getName() {
+	public String getName() {
 		return this.name; 
 	}
 }
