@@ -16,7 +16,7 @@ public class X0cli {
 	players[0] = new CPlayer(name1, EFigure.X);
 	players[1] = new CPlayer(name2, EFigure.O); 
 
-	final CGame gameX0 = new CGame(players, new CField(3), "X0"); 
+	final CGame gameX0 = new CGame(players, new CField(5), "X0"); 
 	
 	final CConsoleView consoleView = new CConsoleView();
 	consoleView.show(gameX0);

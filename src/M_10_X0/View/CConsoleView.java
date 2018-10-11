@@ -15,11 +15,10 @@ public class CConsoleView {
 		System.out.format("Game name: %s\n",  game.getName());
 		
 		for(int row=0; row<gameBoard.getSize(); row++) {
-		    	if(row!=0) {
-		    	    printSepartor(gameBoard); 
-		    	}
-			printLine(gameBoard, row);
+			printSepartor(gameBoard); 
+			printBoardLine(gameBoard, row);
 		}
+		printSepartor(gameBoard); 
 	}
 
 
@@ -27,7 +26,8 @@ public class CConsoleView {
 		
 	}
 
-	private void printLine(final CField gameBoard, final int row){
+	private void printBoardLine(final CField gameBoard, final int row){
+		
 		for(int column=0; column<gameBoard.getSize(); column++) {
 			final EFigure figure ;
 			try {
@@ -36,15 +36,19 @@ public class CConsoleView {
 				e.printStackTrace();
 				throw new RuntimeException(e); 
 			}
-			System.out.print("|");
-			System.out.print(figure != null? figure : " ");
+			
+			System.out.format("| %s ", (figure != null? figure : " ")); 
+//			System.out.print("|");
+//			System.out.print(figure != null? figure : " ");
 		}
 		System.out.println("|");
 	}
 	
+
+
 	private void printSepartor(final CField gameBoard) {
 	    for(int i=0; i<gameBoard.getSize(); i++) {
-		System.out.print("+-");
+		System.out.print("+---");
 	    }
 	    System.out.println("+");
 	}
