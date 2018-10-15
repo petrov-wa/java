@@ -11,19 +11,16 @@ import M_10_X0.Model.Exceptions.AlreadyOccupiedException;;
 
 
 public class CMoveController {
+    public CMoveController() {
+	super(); 
+    }
 
-	public CMoveController() {
-		// TODO Auto-generated constructor stub
+    public void applyFigure(final CField gameBoard, final Point toPoint,final EFigure figure) 
+	    throws AlreadyOccupiedException,InvalidPointException {
+	
+	if(gameBoard.getFigure(toPoint) != null) {
+	    throw new AlreadyOccupiedException();
 	}
-
-	void applyFigure(final CField gameBoard, 
-					 final Point toPoint, 
-					 final EFigure figure) throws AlreadyOccupiedException,
-	    										  InvalidPointException {
-		
-		if(gameBoard.getFigure(toPoint) != null) {
-			throw new AlreadyOccupiedException();
-		}
-		gameBoard.setFigure(toPoint, figure);
-	}
+	gameBoard.setFigure(toPoint, figure);
+    }
 }

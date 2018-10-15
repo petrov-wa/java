@@ -25,7 +25,7 @@ public class CCurrentMoveController {
 		    if(gameBoard.getFigure(new Point(i,j)) != null) { cnt++; }
 		}catch(InvalidPointException e) {
 		    /*
-		     * if get exception via simplify walking on game board -- then game mast fall   
+		     * if get exception via simplify walking on game board -- then game must fall   
 		     * */
 		    throw new RuntimeException(e); 
 		}

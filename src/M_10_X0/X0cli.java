@@ -19,6 +19,10 @@ public class X0cli {
 	final CGame gameX0 = new CGame(players, new CField(3), "X0"); 
 	
 	final CConsoleView consoleView = new CConsoleView();
+	
 	consoleView.show(gameX0);
+	while(consoleView.move(gameX0)) {
+	    consoleView.show(gameX0);
+	}
     }
 }

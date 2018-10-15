@@ -9,36 +9,34 @@ import M_10_X0.Model.Exceptions.NoWinnerException;
 
 public class CWinnerController {
 
-	public CWinnerController() {
-		// TODO Auto-generated constructor stub
-	}
+    public CWinnerController() {
+	super(); 
+    }
+    
+    public EFigure getWinner(final CField gameBoard) throws NoWinnerException {
 
-	public EFigure getWinner(final CField gameBoard) throws NoWinnerException {
-
-		try {
-			for(int i=0; i<gameBoard.getSize(); i++) {
-				if(check(gameBoard, new Point(i, 0), p->new Point(p.x, p.y+1))){
-					return gameBoard.getFigure(new Point(i, 0)); 
-				}
-			}	
-			for(int i=0; i<gameBoard.getSize(); i++) {
-				if(check(gameBoard, new Point(0, i), p->new Point(p.x+1, p.y))){
-					return gameBoard.getFigure(new Point(0, i)); 
-				}
-			}
-			
-			if(check(gameBoard, new Point(0, 0), p->new Point(p.x + 1, p.y + 1))) {
-				return gameBoard.getFigure(new Point(0,0)); 
-			}
-			if(check(gameBoard, new Point(0, gameBoard.getSize()-1), p->new Point(p.x + 1, p.y - 1))) {
-				return gameBoard.getFigure(new Point(0, gameBoard.getSize()-1)); 
-			}
-		} catch(InvalidPointException e){
-			e.printStackTrace(); 
+	try {
+	    for(int i=0; i<gameBoard.getSize(); i++) {
+		if(check(gameBoard, new Point(i, 0), p->new Point(p.x, p.y+1))){
+		    return gameBoard.getFigure(new Point(i, 0));
 		}
-		
-		return null;
+	    }
+	    for(int i=0; i<gameBoard.getSize(); i++) {
+		if(check(gameBoard, new Point(0, i), p->new Point(p.x+1, p.y))){
+		    return gameBoard.getFigure(new Point(0, i));
+		}
+	    }
+	    if(check(gameBoard, new Point(0, 0), p->new Point(p.x + 1, p.y + 1))) {
+		return gameBoard.getFigure(new Point(0,0));
+	    }
+	    if(check(gameBoard, new Point(0, gameBoard.getSize()-1), p->new Point(p.x + 1, p.y - 1))) {
+		return gameBoard.getFigure(new Point(0, gameBoard.getSize()-1));
+	    }
+	} catch(InvalidPointException e){
+	    e.printStackTrace();
 	}
+	return null;
+    }
 /*	
 	private boolean check(final CField gameBoard, final Point p1, final Point p2, final Point p3) {
 		try {
@@ -53,35 +51,33 @@ public class CWinnerController {
 		return false; 
 	}
 */
-	private boolean check(final CField gameBoard, final Point currentPoint, final IPointChanger pointGenerator) {
 
-		final EFigure currentFigure; 
-		final EFigure nextFigure; 
-		final Point nextPoint = pointGenerator.next(currentPoint);
-		try {
-			// пробуем получить фигуру из текущего поля и следующего 
-			currentFigure = gameBoard.getFigure(currentPoint); 
-//			if(currentFigure == null) { return false; } // текущее поле не заполнено -- 
-														// значит в этом направлении победителей нет
-			nextFigure    = gameBoard.getFigure(nextPoint); 
-		} catch (final InvalidPointException e) {
-			// если возникло исключение "неверное поле", значит нет пары фигур для сравнения на текущем
-			// шаге, но раз мы дошли до этого шага, значит до этого шага фигуры совпадали, значит 
-			// действительно кто-то победил
-			return true; 
-		}
-		
-		if(currentFigure == null) { return false; } // текущее поле не заполнено -- 
-		// значит в этом направлении победителей нет
-		if(currentFigure != nextFigure) {return false; } // в текущем полу не такая фигурка как 
-														 // в следующем -- нет победитедя в данном 
-														 // направлении
-		
-		return this.check(gameBoard, nextPoint, pointGenerator); 
-	}
-
+    private boolean check(final CField gameBoard, final Point currentPoint, final IPointChanger pointGenerator) {
 	
-	private static interface IPointChanger {
-		Point next(final Point current); 
+	final EFigure currentFigure;
+	final EFigure nextFigure;
+	final Point nextPoint = pointGenerator.next(currentPoint);
+	
+	try {
+	    // пробуем получить фигуру из текущего поля и следующего
+	    currentFigure = gameBoard.getFigure(currentPoint); 
+//	    if(currentFigure == null) { return false; } // текущее поле не заполнено --
+	    nextFigure    = gameBoard.getFigure(nextPoint);
+	} catch (final InvalidPointException e) {
+	    // если возникло исключение "неверное поле", значит нет пары фигур для сравнения на текущем
+	    // шаге, но раз мы дошли до этого шага, значит до этого шага фигуры совпадали, значит 
+	    // действительно кто-то победил
+	    return true; 
 	}
+	
+	if(currentFigure == null) { return false; } // текущее поле не заполнено -- значит в этом направлении победителей нет 
+	if(currentFigure != nextFigure) {return false; } // в текущем поле не такая фигурка как в следующем -- нет 
+	                                                 // победитедя в данном направлении
+
+	return this.check(gameBoard, nextPoint, pointGenerator); 
+    }
+    
+    private static interface IPointChanger {
+	Point next(final Point current); 
+    }
 }

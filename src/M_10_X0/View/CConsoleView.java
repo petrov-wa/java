@@ -4,10 +4,12 @@ import java.awt.Point;
 import java.util.Scanner;
 
 import M_10_X0.Controller.CCurrentMoveController;
+import M_10_X0.Controller.CMoveController;
 import M_10_X0.Controller.CWinnerController;
 import M_10_X0.Model.CField;
 import M_10_X0.Model.CGame;
 import M_10_X0.Model.EFigure;
+import M_10_X0.Model.Exceptions.AlreadyOccupiedException;
 import M_10_X0.Model.Exceptions.InvalidPointException;
 import M_10_X0.Model.Exceptions.NoWinnerException;
 
@@ -31,8 +33,9 @@ public class CConsoleView {
 
     public boolean move(final CGame game) {
 	final CField gameBoard = game.getField(); 
-	final EFigure currentFigure = this.currentMoveController.currentMove(gameBoard );
-	if(this.currentMoveController == null) {
+	final EFigure currentFigure = this.currentMoveController.currentMove(gameBoard);
+	final CMoveController moveController = new CMoveController(); 
+	if(currentFigure == null) {
 	    try {
 		final EFigure winner = this.winnerController.getWinner(gameBoard);
 		System.out.format("We got a winner: %s. Game over.", winner);
@@ -46,7 +49,13 @@ public class CConsoleView {
 	}
 	System.out.format("Enter turn point for player %s", currentFigure);
 	final Point point = askPoint();  
-
+	
+	try {
+	    moveController.applyFigure(gameBoard, point, currentFigure);
+	} catch (AlreadyOccupiedException | InvalidPointException e) {
+	    e.printStackTrace();
+	    System.out.println("Entered point is invlid!");
+	}
 	return true; 
     }
 
