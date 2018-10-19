@@ -13,8 +13,9 @@ public class CWinnerController {
 	super(); 
     }
     
-    public EFigure getWinner(final CField gameBoard) throws NoWinnerException {
+    public EFigure getWinner(final CField gameBoard) {
 
+	
 	try {
 	    for(int i=0; i<gameBoard.getSize(); i++) {
 		if(check(gameBoard, new Point(i, 0), p->new Point(p.x, p.y+1))){

@@ -34,20 +34,29 @@ public class CConsoleView {
     public boolean move(final CGame game) {
 	final CField gameBoard = game.getField(); 
 	final EFigure currentFigure = this.currentMoveController.currentMove(gameBoard);
-	final CMoveController moveController = new CMoveController(); 
-	if(currentFigure == null) {
-	    try {
-		final EFigure winner = this.winnerController.getWinner(gameBoard);
+	final CMoveController moveController = new CMoveController();
+
+	/*
+	 * Check if we have a winner on previous turns 
+	 */
+	final EFigure winner = this.winnerController.getWinner(gameBoard);
+	if(winner!=null) {
 		System.out.format("We got a winner: %s. Game over.", winner);
-	    } catch (NoWinnerException e) {
-		/*
-		 * No winner 
-		 * */
-		System.out.println("No winner and no more turns left! Game over.");
-	    }
+		return false; 
+	}
+	
+	/*
+	 * Check if turns is over and no winner 
+	 */
+	if(currentFigure == null) {
+	    System.out.println("No winner and no more turns left! Game over.");
 	    return false; 
 	}
-	System.out.format("Enter turn point for player %s", currentFigure);
+	
+	/*
+	 * All previous check's are fall -- then do turn for current player/figure 
+	 */
+	System.out.format("Enter turn point for player %s\n", currentFigure);
 	final Point point = askPoint();  
 	
 	try {
